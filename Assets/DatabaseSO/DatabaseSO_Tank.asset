@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d9c1301af5e74e7f8962b9f1637f529, type: 3}
+  m_Name: DatabaseSO_Tank
+  m_EditorClassIdentifier: 
+  data:
+  - unitId: tank_red
+    bodySprite: {fileID: 21300000, guid: 15cc6217c066e42379c2112b23e8d51f, type: 3}
+    barrelSprite: {fileID: 21300000, guid: 21cb083cb0a9643dbbfe5d8eeb63f5e7, type: 3}
+    health: 10
+    speed: 1.5
+    power: 5
+    type: 1
+  - unitId: tank_blue
+    bodySprite: {fileID: 21300000, guid: 8a94048c116cf4aec861e6a1fd51bbad, type: 3}
+    barrelSprite: {fileID: 21300000, guid: 1a003207bb165423da8b80e09c87c994, type: 3}
+    health: 10
+    speed: 1.5
+    power: 5
+    type: 3
+  - unitId: tank_green
+    bodySprite: {fileID: 21300000, guid: da9493ad80bcc4c01867c0f99684ac2f, type: 3}
+    barrelSprite: {fileID: 21300000, guid: 3b5954943a1ce4bc8bf9a0e4319a841e, type: 3}
+    health: 10
+    speed: 1.5
+    power: 5
+    type: 2
+  - unitId: tank_yellow
+    bodySprite: {fileID: 21300000, guid: 099b9064fbcae48da8bfe168ad2cd3c1, type: 3}
+    barrelSprite: {fileID: 21300000, guid: 408f6d3402a3c405895a1ac618eede0a, type: 3}
+    health: 10
+    speed: 1.5
+    power: 5
+    type: 4
+  - unitId: tank_special
+    bodySprite: {fileID: 21300000, guid: 7adbabeef351d404691b6ee1de93f3a9, type: 3}
+    barrelSprite: {fileID: 21300000, guid: eb5d2d32d99594f63a535f35e95dc894, type: 3}
+    health: 100
+    speed: 1
+    power: 8
+    type: 0
