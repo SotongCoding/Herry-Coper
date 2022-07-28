@@ -18,5 +18,6 @@ public struct DataModelSO_PalneData : SotongUtils.DataBaseSO_DataModel
     public float health;
     public float speed;
     public int power;
+    public float shootDelay;
     public CommonVariable.UnityType type;
 }

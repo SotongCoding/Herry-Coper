@@ -6,14 +6,13 @@ using UnityEngine.EventSystems;
 public class PlaneControl : SotongUtils.PoolSpawnedObject
 {
     public PlaneProperties properties { private set; get; } = new PlaneProperties();
+
     protected override void StoreToPool()
     {
         gameObject.SetActive(false);
         base.StoreToPool();
     }
     public PlaneVisualHandle visualHandle { private set; get; }
-
-    public bool canAttack { private set; get; }
     float currentTimer;
 
     #region  Moving Control
@@ -25,20 +24,31 @@ public class PlaneControl : SotongUtils.PoolSpawnedObject
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
         rigid.rotation = angle;
     }
+    #endregion
 
+    #region  Shoot Properties
+    ShootArea shootArea;
+    public float shootInteval => properties.shootDelay;
+    void GiveDamage(TankControl target)
+    {
+        if (target.properties.type == properties.type)
+        {
+            target.TakeDamage(properties.power);
+        }
+    }
     #endregion
 
     private void Awake()
     {
         visualHandle = GetComponent<PlaneVisualHandle>();
-        // Event when Die
+        shootArea = GetComponentInChildren<ShootArea>();
     }
 
     internal void Intial(DataModelSO_PalneData data)
     {
         properties.onDeath += StoreToPool;
         properties.onChangeHealth += visualHandle.UpdateTime;
-        
+
         properties.Initial(data);
         visualHandle.Initial(data);
 
@@ -51,15 +61,20 @@ public class PlaneControl : SotongUtils.PoolSpawnedObject
 
     private void FixedUpdate()
     {
+        //Moving
         rigid.velocity = direction * properties.speed;
-        if (!canAttack)
+
+        //Attack
+        if (currentTimer < shootInteval) currentTimer += Time.fixedDeltaTime;
+
+        if (shootArea.currenttarget == null) return;
+        if (currentTimer >= shootInteval)
         {
-            currentTimer += Time.fixedDeltaTime;
-            if (currentTimer >= 1)
-            {
-                canAttack = true;
-                currentTimer = 0;
-            }
+            GiveDamage(shootArea.currenttarget);
+            currentTimer = 0;
         }
+
     }
+
+
 }

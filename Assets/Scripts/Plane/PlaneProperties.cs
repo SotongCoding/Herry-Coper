@@ -11,6 +11,8 @@ public class PlaneProperties
     public float health { private set; get; }
     public float speed { private set; get; }
     public int power { private set; get; }
+    public float shootDelay { private set; get; }
+    
     public CommonVariable.UnityType type { private set; get; }
 
     // Event
@@ -36,6 +38,7 @@ public class PlaneProperties
         this.health = data.health;
         this.speed = data.speed;
         this.power = data.power;
+        this.shootDelay = data.shootDelay;
         this.type = data.type;
 
         StartTimer();

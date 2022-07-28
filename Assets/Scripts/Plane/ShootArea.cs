@@ -5,20 +5,28 @@ using UnityEngine;
 public class ShootArea : MonoBehaviour
 {
     PlaneControl unit;
+    public TankControl currenttarget { private set; get; }
     private void Awake()
     {
         unit = GetComponentInParent<PlaneControl>();
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!unit.canAttack) return;
-        
         if (other.CompareTag("tank"))
         {
             var tank = other.GetComponent<TankControl>();
-            if (tank.properties.type == unit.properties.type)
+            currenttarget = tank;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D other)
+    {
+
+        if (other.CompareTag("tank"))
+        {
+            var tank = other.GetComponent<TankControl>();
+            if (currenttarget == tank)
             {
-                tank.TakeDamage(unit.properties.power);
+                currenttarget = null;
             }
         }
     }

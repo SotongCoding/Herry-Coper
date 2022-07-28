@@ -9,6 +9,7 @@ public class TankProperties
     public float health { private set; get; }
     public float speed { private set; get; }
     public int power { private set; get; }
+    public bool IsDestroyed { private set; get; }
     public CommonVariable.UnityType type { private set; get; }
 
     // Event
@@ -26,7 +27,7 @@ public class TankProperties
 
     public void Initial(DataModelSO_TankData data)
     {
-        
+
         this.health = data.health;
         this.speed = data.speed;
         this.power = data.power;
